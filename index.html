@@ -195,12 +195,33 @@
                 </td>
                 <td style="width:25%">
                     <p style="font-size: 12px;" id="ip-display">当前IP：获取中...</p>
-                    <!-- 使用 myip.ipip.net 纯文本接口获取IP -->
+                    <!-- 使用 ipinfo.io 接口获取 IP+城市+运营商 详情 -->
                     <script>
-                        fetch("https://myip.ipip.net/s")
-                            .then(r => r.text())
-                            .then(ip => {
-                                document.getElementById("ip-display").textContent = "当前IP：" + ip.trim();
+                        const regionMap = {Jiangxi:"江西",Guangdong:"广东",Beijing:"北京",Shanghai:"上海",Zhejiang:"浙江",Jiangsu:"江苏",Fujian:"福建",Shandong:"山东",Sichuan:"四川",Hubei:"湖北",Hunan:"湖南",Henan:"河南",Hebei:"河北",Anhui:"安徽",Hainan:"海南",Yunnan:"云南",Guizhou:"贵州",Shanxi:"山西",Shaanxi:"陕西",Liaoning:"辽宁",Jilin:"吉林",Heilongjiang:"黑龙江",Gansu:"甘肃",Qinghai:"青海",Taiwan:"台湾",InnerMongolia:"内蒙古",Xinjiang:"新疆",Tibet:"西藏",Guangxi:"广西",Ningxia:"宁夏",Chongqing:"重庆",Tianjin:"天津",Macau:"澳门",HongKong:"香港"};
+                        const cityMap = {Nanchang:"南昌",Guangzhou:"广州",Shenzhen:"深圳",Beijing:"北京",Shanghai:"上海",Hangzhou:"杭州",Nanjing:"南京",Fuzhou:"福州",Xiamen:"厦门",Jinan:"济南",Qingdao:"青岛",Chengdu:"成都",Wuhan:"武汉",Changsha:"长沙",Zhengzhou:"郑州",Shijiazhuang:"石家庄",Hefei:"合肥",Haikou:"海口",Kunming:"昆明",Guiyang:"贵阳",Taiyuan:"太原",Xian:"西安",Shenyang:"沈阳",Dalian:"大连",Changchun:"长春",Harbin:"哈尔滨",Lanzhou:"兰州",Xining:"西宁",Hohhot:"呼和浩特",Urumqi:"乌鲁木齐",Lhasa:"拉萨",Nanning:"南宁",Yinchuan:"银川",Chongqing:"重庆",Tianjin:"天津",Macau:"澳门",HongKong:"香港",Suzhou:"苏州",Wuxi:"无锡",Ningbo:"宁波",Wenzhou:"温州",Dongguan:"东莞",Foshan:"佛山",Zhuhai:"珠海",Zhongshan:"中山",Huizhou:"惠州",Tangshan:"唐山",Baoding:"保定",Luoyang:"洛阳",Kaifeng:"开封",Xinyang:"信阳",Zhumadian:"驻马店",Pingdingshan:"平顶山",Nanyang:"南阳",Zhoukou:"周口",Shangqiu:"商丘",Anyang:"安阳",Xinxiang:"新乡",Jiaozuo:"焦作",Puyang:"濮阳",Xuchang:"许昌",Luohe:"漯河",Sanmenxia:"三门峡",Hebi:"鹤壁",Jiuquan:"酒泉",Tianshui:"天水",Baoji:"宝鸡",Xianyang:"咸阳",Weinan:"渭南","Yan'an":"延安",Hanzhong:"汉中",Yulin:"榆林",Ankang:"安康",Shangluo:"商洛",Mianyang:"绵阳",Deyang:"德阳",Yibin:"宜宾",Nanchong:"南充",Dazhou:"达州",Luzhou:"泸州",Leshan:"乐山",Zigong:"自贡",Panzhihua:"攀枝花",Neijiang:"内江",Guangyuan:"广元",Suining:"遂宁",Ziyang:"资阳",Meishan:"眉山","Ya'an":"雅安",Bazhong:"巴中","Guang'an":"广安",Aba:"阿坝",Garze:"甘孜",Liangshan:"凉山",Yichang:"宜昌",Xiangyang:"襄阳",Jingzhou:"荆州",Huangshi:"黄石",Shiyan:"十堰",Xiaogan:"孝感",Jingmen:"荆门",Ezhou:"鄂州",Huanggang:"黄冈",Xianning:"咸宁",Suizhou:"随州",Enshi:"恩施",Xiantao:"仙桃",Qianjiang:"潜江",Tianmen:"天门",Zhijiang:"枝江",Yueyang:"岳阳",Zhuzhou:"株洲",Xiangtan:"湘潭",Hengyang:"衡阳",Changde:"常德",Yiyang:"益阳",Loudi:"娄底",Chenzhou:"郴州",Yongzhou:"永州",Huaihua:"怀化",Shaoyang:"邵阳",Xiangxi:"湘西",Zhangjiajie:"张家界",Jiujiang:"九江",Ganzhou:"赣州",Shangrao:"上饶",Jian:"吉安",Yichun:"宜春",Pingxiang:"萍乡",Xinyu:"新余",Yingtan:"鹰潭",Zhangzhou:"漳州",Quanzhou:"泉州",Putian:"莆田",Sanming:"三明",Nanping:"南平",Longyan:"龙岩",Ningde:"宁德",Wuhu:"芜湖",Bengbu:"蚌埠",Maanshan:"马鞍山",Huaibei:"淮北",Tongling:"铜陵",Anqing:"安庆",Huangshan:"黄山",Chuzhou:"滁州",Fuyang:"阜阳","Lu'an":"六安",Bozhou:"亳州",Chizhou:"池州",Xuancheng:"宣城",Qingyuan:"清远",Shaoguan:"韶关",Zhanjiang:"湛江",Zhaoqing:"肇庆",Jiangmen:"江门",Maoming:"茂名",Yangjiang:"阳江",Yunfu:"云浮",Heyuan:"河源",Meizhou:"梅州",Shanwei:"汕尾",Chaozhou:"潮州",Jieyang:"揭阳",Shantou:"汕头",Taichung:"台中",Tainan:"台南",Kaohsiung:"高雄"};
+                        const orgMap = {"CHINANET":"电信","CHINA TELECOM":"电信","CHINA UNICOM":"联通","CHINAMOBILE":"移动","CHINA MOBILE":"移动","CHINA RAILWAY":"铁通","CERNET":"教育网","CNNIC":"中科院","ALIBABA":"阿里云","TENCENT":"腾讯云","HUAWEI":"华为云","BAIDU":"百度云","UCLOUD":"UCloud"};
+                        function toZh(en, map) {
+                            if (!en) return "";
+                            if (map[en]) return map[en];
+                            for (const k in map) if (en.toUpperCase().indexOf(k) >= 0) return map[k];
+                            return en;
+                        }
+                        fetch("https://ipinfo.io/json?lang=zh-CN")
+                            .then(r => r.json())
+                            .then(data => {
+                                if (data && data.ip) {
+                                    const ip = data.ip;
+                                    const region = toZh(data.region, regionMap);
+                                    const city = toZh(data.city, cityMap);
+                                    const loc = [region, city].filter(Boolean).join("");
+                                    const org = toZh((data.org || "").replace(/^AS\d+\s*/, "").toUpperCase(), orgMap);
+                                    let display = "当前IP：" + ip;
+                                    if (loc) display += " " + loc;
+                                    if (org) display += " " + org;
+                                    document.getElementById("ip-display").textContent = display;
+                                } else {
+                                    document.getElementById("ip-display").textContent = "当前IP：获取失败";
+                                }
                             })
                             .catch(() => {
                                 document.getElementById("ip-display").textContent = "当前IP：获取失败";
