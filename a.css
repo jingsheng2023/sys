@@ -23,18 +23,18 @@ font-size: 15pt;
 border:1px solid #C71585;
 border-radius:1px;
 }
-/* 增强整体专业感的样式 */
+/* 澧炲己鏁翠綋涓撲笟鎰熺殑鏍峰紡 */
 body {
-font-family: 华文中宋, STZhongsong, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+font-family: 鍗庢枃涓畫, STZhongsong, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-/* 优化表格样式 */
+/* 浼樺寲琛ㄦ牸鏍峰紡 */
 table {
 border-collapse: collapse;
 }
 td {
 padding: 5px;
 }
-/* 优化底部导航 */
+/* 浼樺寲搴曢儴瀵艰埅 */
 #bottomnav {
 z-index: 1000;
 opacity: 0.8;
@@ -43,7 +43,7 @@ transition: opacity 0.3s;
 #bottomnav:hover {
 opacity: 1;
 }
-/* 版权声明样式优化 */
+/* 鐗堟潈澹版槑鏍峰紡浼樺寲 */
 div[style*="text-align: center; margin-top: 20px"] {
 font-size: 14px;
 padding: 10px;
@@ -52,3 +52,4 @@ border-radius: 5px;
 max-width: 800px;
 margin: 20px auto;
 }
+
