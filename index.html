@@ -1,442 +1,454 @@
-	<html>
-	<head>
-<meta charset="UTF-8">
-		<title>三一三量化</title>
-		<link href="i.png" rel="Shortcut Icon" type="image/x-icon">
-		<link rel="stylesheet" href="a.css" type="text/css">
-		<base target="_blank" />
-		<style>
-			/* 新年倒计时样式优化 - 同一行显示 */
-			.gn_box {
-				padding: 10px;
-				margin: 10px auto;
-				text-align: center;
-				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-				border-radius: 10px;
-				box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-				max-width: 800px;
-			}
-			.gn_box h1 {
-				margin: 0 0 10px 0;
-				font-size: 28px;
-				font-weight: bold;
-				text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-			}
-			#CountMsg {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				flex-wrap: nowrap;
-				gap: 5px;
-			}
-			#CountMsg span {
-				background: rgba(255,255,255,0.2);
-				padding: 8px 12px;
-				border-radius: 8px;
-				font-size: 20px;
-				font-weight: bold;
-				color: white;
-				min-width: 60px;
-				backdrop-filter: blur(10px);
-				border: 1px solid rgba(255,255,255,0.3);
-				transition: transform 0.2s ease;
-				text-align: center;
-			}
-			#CountMsg span:hover {
-				transform: scale(1.05);
-			}
-			/* 搜索框样式优化 - 更专业的样式 */
-			.search-container {
-				width: 450px;
-				margin: 15px auto;
-				display: flex;
-				gap: 8px;
-				padding: 10px;
-				background-color: rgba(255, 255, 255, 0.8);
-				border-radius: 8px;
-				box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-			}
-			.search-select {
-				padding: 8px;
-				font-size: 14px;
-				border: 1px solid #C1FFE4;
-				border-radius: 6px;
-				background-color: white;
-				box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-				transition: border-color 0.3s;
-			}
-			.search-select:focus {
-				outline: none;
-				border-color: #764ba2;
-			}
-			.search-input {
-				flex: 1;
-				height: 36px;
-				font-size: 14pt;
-				border: 1px solid #C1FFE4;
-				border-radius: 6px;
-				padding: 0 10px;
-				box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-				transition: border-color 0.3s, box-shadow 0.3s;
-			}
-			.search-input:focus {
-				outline: none;
-				border-color: #764ba2;
-				box-shadow: 0 0 0 2px rgba(118, 75, 162, 0.2);
-			}
-			.search-button {
-				height: 36px;
-				font-size: 14pt;
-				background-color: #F08080;
-				border: 1px solid #000000;
-				border-radius: 6px;
-				padding: 0 20px;
-				cursor: pointer;
-				transition: all 0.3s;
-				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-			}
-			.search-button:hover {
-				background-color: #FF6B6B;
-				transform: translateY(-2px);
-				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-			}
-			.search-button:active {
-				transform: translateY(0);
-				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-			}
-		</style>
-	</head>
-	<body bgcolor="LightSteelBlue">
-	<div style="background-color:#EE82EE;border:1px solid #ccc;padding: 25px 0;position:relative;">
-		<p style="text-align:center;margin:0;line-height:1.2;position:relative;display:flex;align-items:center;justify-content:space-around;">
-			<span style="font-size:38px;font-weight: bold;position:absolute;left:10px;top:50%;transform:translateY(-50%);">
-				<a href="http://www.mydm83.com:1983"><img src="66.png" style="width: 90px; height: 80px; vertical-align: middle;" /></a>
-			</span>
-			<span style="font-size:48px;font-weight: bold;margin-left:100px;font-family: 华文中宋, STZhongsong, serif;letter-spacing: 2px;text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">学&nbsp;&nbsp;无&nbsp;&nbsp;止&nbsp;&nbsp;境</span>
-			<span style="font-size:48px;font-weight: bold;font-family: 华文中宋, STZhongsong, serif;letter-spacing: 2px;text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">知&nbsp;&nbsp;行&nbsp;&nbsp;合&nbsp;&nbsp;一</span>
-		</p>
-	</div>
-	<div id="webjx" style="text-align: center;">当前时间</div>
-	<script>setInterval("webjx.innerHTML=new Date().toLocaleString()+' 星期'+'日一二三四五六'.charAt(new Date().getDay());",1000);</script>
-	<!-- 优化后的搜索部分 -->
-	<div class="search-container">
-		<select class="search-select" id="searchEngine">
-			<option value="baidu">百度搜索</option>
-			<option value="bing">必应搜索</option>
-			<option value="360">360搜索</option>
-		</select>
-		<input id="searchInput" class="search-input" type="search" placeholder="请输入搜索内容..." />
-		<button class="search-button" onclick="performSearch()">搜索</button>
-	</div>
-	<script>
-		function performSearch() {
-			const searchEngine = document.getElementById('searchEngine').value;
-			const searchQuery = document.getElementById('searchInput').value;
-			let searchUrl = '';
-			switch(searchEngine) {
-				case 'baidu':
-					searchUrl = `https://www.baidu.com/s?wd=${encodeURIComponent(searchQuery)}`;
-					break;
-				case 'bing':
-					searchUrl = `https://www.bing.com/search?q=${encodeURIComponent(searchQuery)}`;
-					break;
-				case '360':
-					searchUrl = `https://www.so.com/s?q=${encodeURIComponent(searchQuery)}`;
-					break;
-			}
-			if(searchQuery) {
-				window.open(searchUrl, '_blank');
-			}
-		}
-		// 支持回车键搜索
-		document.getElementById('searchInput').addEventListener('keypress', function(e) {
-			if(e.key === 'Enter') {
-				performSearch();
-			}
-		});
-	</script>
-	<p>&nbsp;&nbsp;</p>
-	<table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
-		<tbody>
-			<tr>
-				<td style="width:75%">
-				<p><span style="float: left;">&nbsp;&nbsp;</span></p>
-				</td>
-				<td style="width:25%">
-				<p style="font-size: 12px;" id="ip-display">当前IP：获取中...</p>
-<script>
-fetch("https://ipapi.co/json/")
-.then(r => r.json())
-.then(d => {
-document.getElementById("ip-display").textContent =
-"当前IP：" + d.ip + "（" + (d.city || d.region || "") + "）";
-})
-.catch(() => {
-document.getElementById("ip-display").textContent = "当前IP：获取失败";
-});
-</script>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<table border="0" cellpadding="0" cellspacing="0" style="width:100%">
-		<tbody>
-			<tr>
-				<td style="width:75%">
-				<table border="0" cellpadding="0" cellspacing="0" style="width:100%">
-					<tbody>
-						<tr>
-							<td width="16%">
-	<p><a href="http://tplogin.cn/">TPLINK</a></p>
-	<p><a href="https://pgybox.oray.com/">P G Y</a></p>			
-	<p><a href="https://chat.scnet.cn/">S E E K</a></p>
-	<p><a href="https://bigmodel.cn">智谱清言</a></p>
-	<p><a href="https://chat.deepseek.com/a/chat/s/f0ee7160-7a9f-4522-a782-58558557c325">D E E P</a></p>
-	<p><a href="https://jimeng.jianying.com/ai-tool/home">即梦AI</a></p>
-	<p><a href="https://www.wenxiaobai.com/chat/200006">问 小 白</a></p>                                                                                             
-	<p><a href="https://next.itellyou.cn/Original/">原版系统</a></p>
-	<p><a href="https://yiyan.baidu.com">文心一言</a></p>
-	<p><a href="https://www.douyin.com/">抖音PC</a></p>
-	<p><a href="https://www.doubao.com/chat/?channel=baidu_pz&source=db_baidu_pz_01&keywordid=weizhi7"> 豆  包</a></p>
-	<p><a href="https://kimi.moonshot.cn/chat/cpapcvpkqq4uupkeepfg">K I M I</a></p>
-	<p><a href="https://github.com">GITHUB</a></p>
-	<p><a href="https://www.55188.com/">理想论坛</a></p>
-	<p><a href="https://www.52pojie.cn/">吾爱破解</a></p>
-	<p><a href="https://gitee.com/explore">GITEE</a></p>
-	<p><a href="https://www.csdn.net">C S D N</a></p>
-	<p><a href="https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Faccount-devops.aliyun.com%2Flogin%3Fnext_url%3Dhttp%3A%2F%2Faccount-devops.aliyun.com%2Flogin%3Fnext_url%3Dhttp%253A%252F%252Fcodeup.aliyun.com%252F">阿里云</a></p>
-	<p><a href="https://mail.163.com/js6/main.jsp?sid=RDHHZPuACtUewHYfnEAAzayXHWieoloy&df=mail163_letter#module=welcome.WelcomeModule%7C%7B%7D">163邮箱</a></p>
-	<p><a href="https://wannianrili.bmcx.com">万 年 历</a></p>
-							</td>
-	<td width="16%">
-	<p><a href="https://818ps.com/">图 怪 兽</a></p>
-	<p><a href="https://699pic.com/">摄 图 网</a></p>
-	<p><a href="https://www.gaituya.com">改 图 鸭</a></p>
-	<p><a href="https://www.pexels.com/zh-cn/">图片素材</a></p>
-	<p><a href="https://www.picup.shop/currency.html">一键抠图</a></p>
-	<p><a href="https://www.chuangkit.com/">创 客 贴</a></p>
-	<p><a href="https://www.58pic.com">千 图 网</a></p>
-	<p><a href="https://www.logosc.cn/start">标 小 智</a></p>
-	 <p><a href="https://bigjpg.com/">AI放大</a></p>
-	<p><a href="https://www.remove.bg/zh">去 背 景</a></p>
-	<p><a href="https://quququ.cn">去 水 印</a></p>                                                                                    
-	<p><a href="https://zypuu.com">资 源 铺</a></p>
-	<p><a href="https://www.gaoding.com">稿定设计</a></p>
-	<p><a href="https://www.99ppt.com">当 图 网</a></p>
-	<p><a href="https://magicstudio.com/magiceraser">魔法橡皮</a></p>
-	<p><a href="https://space.bilibili.com/28457">司 波 图</a></p>
-	<p><a href="https://www.bookmarkearth.cn">书签地球</a></p>
-	<p><a href="https://www.fotor.com.cn">懒 设 计</a></p>
-	<p><a href="http://hao.ssjjss.com">设 计 师</a></p>
-	<p><a href="https://www.vectorizer.io">矢 量 图</a></p>
-	                                                                                                   </td>
-	<td width="16%">
-	<p><a href="https://www.aliyundrive.com/sign/in">阿 里 云</a></p>
-	<p><a href="https://pan.baidu.com/disk/home">百 度 云</a></p>
-	<p><a href="https://pan.quark.cn">夸克网盘</a></p>						
-	<p><a href="https://wenku.baidu.com/">百度文库</a></p>
-	<p><a href="https://www.docin.com/">豆丁文库</a></p>
-	<p><a href="https://www.bilibili.com">哔哩哔哩</a></p>
-	<p><a href="https://www.gndown.com">绿软小站</a></p>
-	<p><a href="https://www.67tool.com/">即时工具</a></p>
-	<p><a href="https://www.weiyun.com/disk">腾讯云盘</a></p>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>三一三</title>
+    <link href="i.png" rel="Shortcut Icon" type="image/x-icon">
+    <link rel="stylesheet" href="a.css" type="text/css">
+    <base target="_blank" />
+    <style>
+        /* 新年倒计时样式优化 - 同一行显示 */
+        .gn_box {
+            padding: 10px;
+            margin: 10px auto;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+        }
+        .gn_box h1 {
+            margin: 0 0 10px 0;
+            font-size: 28px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        #CountMsg {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: nowrap;
+            gap: 5px;
+        }
+        #CountMsg span {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            min-width: 60px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.2s ease;
+            text-align: center;
+        }
+        #CountMsg span:hover {
+            transform: scale(1.05);
+        }
+        /* 搜索框样式优化 - 更专业的样式 */
+        .search-container {
+            width: 450px;
+            margin: 15px auto;
+            display: flex;
+            gap: 8px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .search-select {
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #C1FFE4;
+            border-radius: 6px;
+            background-color: white;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s;
+        }
+        .search-select:focus {
+            outline: none;
+            border-color: #764ba2;
+        }
+        .search-input {
+            flex: 1;
+            height: 36px;
+            font-size: 14pt;
+            border: 1px solid #C1FFE4;
+            border-radius: 6px;
+            padding: 0 10px;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: #764ba2;
+            box-shadow: 0 0 0 2px rgba(118, 75, 162, 0.2);
+        }
+        .search-button {
+            height: 36px;
+            font-size: 14pt;
+            background-color: #F08080;
+            border: 1px solid #000000;
+            border-radius: 6px;
+            padding: 0 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .search-button:hover {
+            background-color: #FF6B6B;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        .search-button:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
 
-	<p><a href="https://www.qtool.net/">站长工具</a></p>
-	<p><a href="https://www.lmcjl.com">工具大全</a></p>
-	<p><a href="https://www.logosc.cn/design/profile">图标生成</a></p>
-	<p><a href="http://paper.people.com.cn/rmrb/html/2022-10/18/nbs.D110000renmrb_01.htm">人 民 网</a></p>
-	<p><a href="https://www.qiuziti.com">求 字 体</a></p>
-	<p><a href="https://www.100font.com">免费字体</a></p>
-	<p><a href="http://www.bigpixel.cn/">像素中国</a></p>
-	<p><a href="https://www.toutiao.com">今日头条</a></p>
-	<p><a href="https://www.allhistory.com">全 历 史</a></p>
-	<p><a href="http://www.timecn.cn">全民解析</a></p>
-	<p><a href="https://www.logosc.cn/logo/badge">印章生成</a></p>
-							</td>
-	<td width="16%">
-	<p><a href="https://weixin.sogou.com">微信搜索</a></p>
-	<p><a href="https://www.nona.de">翻墙搜索</a></p>
-	<p><a href="https://zhongduanju.com">众 短 剧</a></p>
-	<p><a href="https://www.laisoyixia.com">来 搜 索</a></p>
-	<p><a href="https://bt1207ci.xyz">BT搜索</a></p>
-	<p><a href="https://tool.browser.qq.com">帮 小 忙</a></p>
-	<p><a href="https://zlib.wwwnav.com">Z-Librar</a></p>
-	<p><a href="https://yiso.fun">易 搜 索</a></p>
-	<p><a href="http://www.dajiadaohang.com/">打假查询</a></p>
-	<p><a href="https://www.douyin.com/user/MS4wLjABAAAAbGHXFATH4DtSNDemhG8FJfyX9Wp0H3wzP5A5j-DRAGk">手机摄影</a></p>
-	<p><a href="https://www.douyin.com/user/MS4wLjABAAAAmgyYzPPckLcSoKKVCek9KF4F4MB2faSA9O6DtBQmCRI">国会在线</a></p>
-	<p><a href="https://fanyi.youdao.com">有道翻译</a></p>
-	<p><a href="https://www.52hb.com">学 破 解</a></p>
-	<p><a href="https://www.cn-ki.net">检索知识</a></p>
-	<p><a href="http://www.hzwyx.net">范 文 网</a></p>
-	<p><a href="https://www.manongbook.com">码农书社</a></p>
-	<p><a href="https://mp.weixin.qq.com/">公 众 号</a></p>
-	<p><a href="https://233heji.com">合 集 网</a></p>
-	<p><a href="https://aiqicha.baidu.com">爱 企 查</a></p>
-	<p><a href="https://ima.qq.com">知 识 库</a></p>
-	</td>
-							<td width="16%">
-	<p><a href="https://www.cls.cn/telegraph/">财 联 社</a></p>
-	<p><a href="https://xuangutong.com.cn/live">选 股 通</a></p>
-	<p><a href="https://duanxianxia.com">短 线 宝</a></p>
-	<p><a href="https://www.tgb.cn/newIndex">淘 股 吧</a></p>
-	<p><a href="https://www.guhai.com.cn/">股 海 网</a></p>
-	<p><a href="http://cwzx.shdjt.com">仓位在线</a></p>
-	<p><a href="http://www.iwencai.com/unifiedwap/home/index/">问财投顾</a></p>
-	<p><a href="https://www.oschina.net/project">开源社区</a></p>
-	<p><a href="http://www.cninfo.com.cn/new/index">巨潮资讯</a></p>
-	<p><a href="http://www.bathome.net/">批 处 理</a></p>
-	<p><a href="https://greasyfork.org/zh-CN">油猴脚本</a></p>
-	<p><a href="https://www.ypojie.com/pc">亿 破 姐</a></p>
-	<p><a href="https://www.hybase.com/">黑域基地</a></p>
-	<p><a href="http://www.icpcw.com">电 脑 报</a></p>
-	<p><a href="https://msdn.itellyou.cn">系统下载</a></p>
-	<p><a href="https://sonic.volf.club">音速装机</a></p>
-	<p><a href="http://so.kaiwang-nm.com">秒     搜</a></p>
-	<p><a href="https://www.91sotu.com">搜图导航</a></p>
-	<p><a href="https://www.whatbuytoday.com">今天买啥</a></p>
-	<p><a href="https://720yun.com/">VR旅游</a></p>
-							</td>
-	<td width="16%">
-	<p><a href="https://www.speedtest.cn/">测 网 速</a></p>
-	<p><a href="http://www.taobao.com/">淘 宝 网</a></p>
-	<p><a href="https://www.crxsoso.com">搜 扩 展 </a></p>
-	<p><a href="https://www.meijumi.net/">美 剧 迷</a></p>
-	<p><a href="https://movie.douban.com">豆瓣电影</a></p>
-	<p><a href="https://www.iqiyi.com/">爱 奇 艺</a></p>
-	<p><a href="https://v.qq.com/">腾讯视频</a></p>
-	<p><a href="https://www.bilivod.com">哔哩影视</a></p>
-	<p><a href="https://www.zhihu.com/search?q=&type=content">知      乎</a></p>
-	<p><a href="https://jishi.cctv.comt">央视纪实</a></p>
-	<p><a href="https://kimivod.com">电影驿站</a></p>
-	<p><a href="https://www.kanjujitv.com">金牌影院</a></p>
-	<p><a href="https://www.netflixgc.com">奈飞影视</a></p>
-	<p><a href="https://www.meipian.cn/hot">美   篇</a></p>
-	<p><a href="https://bar.ssstab.com">工具搜索</a></p>
-	<p><a href="https://github.com/xx025/carrot">G P T</a></p>     
-	<p><a href="https://tuostudy.upnb.top">图欧资源</a></p>
-	<p><a href="http://www.world68.com">世界网址</a></p>
-	<p><a href="https://map.baidu.com/">百度地图</a></p>
-	<p><a href="https://parse.bqrdh.com/smart/">视频解析</a></p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				</td>
-				<td style="width:25%;background-color:#FF0000;border:1px solid #ccc;padding:5px 10px;">
-				<table border="0" cellpadding="0" cellspacing="0" style="width:100%">
-					<tbody>
-						<tr>
-							<td style="width:50%">
-							<hr />
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<div id="bottomnav" style="position:fixed; bottom:0;right:0;">
-	<p><a href="#top" target="_self"><img alt="" src="39.png" style="width: 60px; height: 78px;" /></a></p>
-	<p>&nbsp;&nbsp;</p>
-	</div>
-	<!-- 版权声明 -->
-	<div style="text-align: center; margin-top: 20px;">
-		<p style="color: #FF0000; font-weight: bold;">本导航只限三一三量化使用，未经授权许可私自分享传播，将追究法律责任！</p>
-	</div>
-	<!-- 优化后的新年倒计时 -->
-	<div class="gn_box">
-	    <h1>
-	        <font color=#E80017>2</font>
-	        <font color=#D1002E>0</font>
-	        <font color=#BA0045>2</font>
-	        <font color=#A3005C>7</font>
-	        <font color=#8C0073>年</font>
-	        <font color=#75008A>-</font>
-	        <font color=#5E00A1>新</font>
-	        <font color=#4700B8>年</font>
-	        <font color=#3000CF>倒</font>
-	        <font color=#1900E6>计</font>
-	        <font color=#0200FD>时</font>
-	    </h1>
-	    <div id="CountMsg" class="HotDate">
-	        <span id="t_d">0 天</span>
-	        <span id="t_h">0 时</span>
-	        <span id="t_m">0 分</span>
-	        <span id="t_s">0 秒</span>
-	    </div>
-	</div>
-	<script type="text/javascript">
-	    // 优化的新年倒计时逻辑
-	    class NewYearCountdown {
-	        constructor(targetDate) {
-	            this.targetDate = new Date(targetDate);
-	            this.elements = {
-	                days: document.getElementById('t_d'),
-	                hours: document.getElementById('t_h'),
-	                minutes: document.getElementById('t_m'),
-	                seconds: document.getElementById('t_s')
-	            };
-	            this.init();
-	        }
-	        init() {
-	            this.update();
-	            // 使用requestAnimationFrame提高性能
-	            this.timer = setInterval(() => this.update(), 1000);
-	        }
-	        update() {
-	            const now = new Date();
-	            let difference = this.targetDate - now;
-	            
-	            // 如果倒计时结束，显示0
-	            if (difference <= 0) {
-	                difference = 0;
-	                clearInterval(this.timer); // 停止计时器
-	            }
-	            
-	            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-	            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-	            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-	            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-	            
-	            this.elements.days.textContent = `${days} 天`;
-	            this.elements.hours.textContent = `${hours} 时`;
-	            this.elements.minutes.textContent = `${minutes} 分`;
-	            this.elements.seconds.textContent = `${seconds} 秒`;
-	            
-	            // 添加脉冲动画效果
-	            this.animateElement(this.elements.seconds);
-	        }
-	        animateElement(element) {
-	            element.classList.add('pulse');
-	            setTimeout(() => {
-	                element.classList.remove('pulse');
-	            }, 300);
-	        }
-	    }
-	    
-	    // 添加CSS动画类
-	    const style = document.createElement('style');
-	    style.textContent = `
-	        @keyframes pulse {
-	            0% { transform: scale(1); }
-	            50% { transform: scale(1.1); }
-	            100% { transform: scale(1); }
-	        }
-	        .pulse { animation: pulse 0.3s ease-in-out; }
-	    `;
-	    document.head.appendChild(style);
-	    
-	    // 初始化倒计时
-	    document.addEventListener('DOMContentLoaded', () => {
-	        new NewYearCountdown('2027/1/1 00:00:00');
-	    });
-	</script>
-	</body>
-	</html>
+        /* ========== 时间显示样式 - 与搜索框宽度一致 ========== */
+        #webjx {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px 16px;
+            width: 450px;
+            max-width: 90%;
+            margin: 16px auto;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #2c3e50;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        #webjx:hover {
+            transform: scale(1.01);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        /* ================================================== */
+    </style>
+</head>
+<body bgcolor="LightSteelBlue">
+    <div style="background-color:#EE82EE;border:1px solid #ccc;padding: 25px 0;position:relative;">
+        <p style="text-align:center;margin:0;line-height:1.2;position:relative;display:flex;align-items:center;justify-content:space-around;">
+            <span style="font-size:38px;font-weight: bold;position:absolute;left:10px;top:50%;transform:translateY(-50%);">
+                <a href="http://www.mydm83.com:1983"><img src="66.png" style="width: 90px; height: 80px; vertical-align: middle;" /></a>
+            </span>
+            <span style="font-size:48px;font-weight: bold;margin-left:100px;font-family: 华文中宋, STZhongsong, serif;letter-spacing: 2px;text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">学&nbsp;&nbsp;无&nbsp;&nbsp;止&nbsp;&nbsp;境</span>
+            <span style="font-size:48px;font-weight: bold;font-family: 华文中宋, STZhongsong, serif;letter-spacing: 2px;text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">知&nbsp;&nbsp;行&nbsp;&nbsp;合&nbsp;&nbsp;一</span>
+        </p>
+    </div>
+
+    <!-- 时间显示 - 宽度与搜索框一致，字体适中 -->
+    <div id="webjx">当前时间</div>
+
+    <script>
+        setInterval("webjx.innerHTML=new Date().toLocaleString()+' 星期'+'日一二三四五六'.charAt(new Date().getDay());", 1000);
+    </script>
+
+    <!-- 搜索部分 -->
+    <div class="search-container">
+        <select class="search-select" id="searchEngine">
+            <option value="baidu">百度搜索</option>
+            <option value="bing">必应搜索</option>
+            <option value="360">360搜索</option>
+        </select>
+        <input id="searchInput" class="search-input" type="search" placeholder="请输入搜索内容..." />
+        <button class="search-button" onclick="performSearch()">搜索</button>
+    </div>
+    <script>
+        function performSearch() {
+            const searchEngine = document.getElementById('searchEngine').value;
+            const searchQuery = document.getElementById('searchInput').value;
+            let searchUrl = '';
+            switch (searchEngine) {
+                case 'baidu':
+                    searchUrl = `https://www.baidu.com/s?wd=${encodeURIComponent(searchQuery)}`;
+                    break;
+                case 'bing':
+                    searchUrl = `https://www.bing.com/search?q=${encodeURIComponent(searchQuery)}`;
+                    break;
+                case '360':
+                    searchUrl = `https://www.so.com/s?q=${encodeURIComponent(searchQuery)}`;
+                    break;
+            }
+            if (searchQuery) {
+                window.open(searchUrl, '_blank');
+            }
+        }
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+    </script>
+
+    <p>&nbsp;&nbsp;</p>
+    <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+        <tbody>
+            <tr>
+                <td style="width:75%">
+                    <p><span style="float: left;">&nbsp;&nbsp;</span></p>
+                </td>
+                <td style="width:25%">
+                    <p style="font-size: 12px;" id="ip-display">当前IP：获取中...</p>
+                    <script>
+                        fetch("https://ip-api.com/json/")
+                            .then(r => r.json())
+                            .then(d => {
+                                if (d.status === "success") {
+                                    document.getElementById("ip-display").textContent =
+                                        "当前IP：" + d.query + "（" + (d.city || d.regionName || "") + "）";
+                                } else {
+                                    document.getElementById("ip-display").textContent = "当前IP：获取失败";
+                                }
+                            })
+                            .catch(() => {
+                                document.getElementById("ip-display").textContent = "当前IP：获取失败";
+                            });
+                    </script>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table border="0" cellpadding="0" cellspacing="0" style="width:100%">
+        <tbody>
+            <tr>
+                <td style="width:75%">
+                    <table border="0" cellpadding="0" cellspacing="0" style="width:100%">
+                        <tbody>
+                            <tr>
+                                <td width="16%">
+                                    <p><a href="http://tplogin.cn/">TPLINK</a></p>
+                                    <p><a href="https://pgybox.oray.com/">P G Y</a></p>
+                                    <p><a href="https://chat.scnet.cn/">S E E K</a></p>
+                                    <p><a href="https://bigmodel.cn">智谱清言</a></p>
+                                    <p><a href="https://chat.deepseek.com/a/chat/s/f0ee7160-7a9f-4522-a782-58558557c325">D E E P</a></p>
+                                    <p><a href="https://jimeng.jianying.com/ai-tool/home">即梦AI</a></p>
+                                    <p><a href="https://www.wenxiaobai.com/chat/200006">问 小 白</a></p>
+                                    <p><a href="https://next.itellyou.cn/Original/">原版系统</a></p>
+                                    <p><a href="https://yiyan.baidu.com">文心一言</a></p>
+                                    <p><a href="https://www.douyin.com/">抖音PC</a></p>
+                                    <p><a href="https://www.doubao.com/chat/?channel=baidu_pz&source=db_baidu_pz_01&keywordid=weizhi7"> 豆 包</a></p>
+                                    <p><a href="https://kimi.moonshot.cn/chat/cpapcvpkqq4uupkeepfg">K I M I</a></p>
+                                    <p><a href="https://github.com">GITHUB</a></p>
+                                    <p><a href="https://www.55188.com/">理想论坛</a></p>
+                                    <p><a href="https://www.52pojie.cn/">吾爱破解</a></p>
+                                    <p><a href="https://gitee.com/explore">GITEE</a></p>
+                                    <p><a href="https://www.csdn.net">C S D N</a></p>
+                                    <p><a href="https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Faccount-devops.aliyun.com%2Flogin%3Fnext_url%3Dhttp%3A%2F%2Faccount-devops.aliyun.com%2Flogin%3Fnext_url%3Dhttp%253A%252F%252Fcodeup.aliyun.com%252F">阿里云</a></p>
+                                    <p><a href="https://mail.163.com/js6/main.jsp?sid=RDHHZPuACtUewHYfnEAAzayXHWieoloy&df=mail163_letter#module=welcome.WelcomeModule%7C%7B%7D">163邮箱</a></p>
+                                    <p><a href="https://wannianrili.bmcx.com">万 年 历</a></p>
+                                </td>
+                                <td width="16%">
+                                    <p><a href="https://818ps.com/">图 怪 兽</a></p>
+                                    <p><a href="https://699pic.com/">摄 图 网</a></p>
+                                    <p><a href="https://www.gaituya.com">改 图 鸭</a></p>
+                                    <p><a href="https://www.pexels.com/zh-cn/">图片素材</a></p>
+                                    <p><a href="https://www.picup.shop/currency.html">一键抠图</a></p>
+                                    <p><a href="https://www.chuangkit.com/">创 客 贴</a></p>
+                                    <p><a href="https://www.58pic.com">千 图 网</a></p>
+                                    <p><a href="https://www.logosc.cn/start">标 小 智</a></p>
+                                    <p><a href="https://bigjpg.com/">AI放大</a></p>
+                                    <p><a href="https://www.remove.bg/zh">去 背 景</a></p>
+                                    <p><a href="https://quququ.cn">去 水 印</a></p>
+                                    <p><a href="https://zypuu.com">资 源 铺</a></p>
+                                    <p><a href="https://www.gaoding.com">稿定设计</a></p>
+                                    <p><a href="https://www.99ppt.com">当 图 网</a></p>
+                                    <p><a href="https://magicstudio.com/magiceraser">魔法橡皮</a></p>
+                                    <p><a href="https://space.bilibili.com/28457">司 波 图</a></p>
+                                    <p><a href="https://www.bookmarkearth.cn">书签地球</a></p>
+                                    <p><a href="https://www.fotor.com.cn">懒 设 计</a></p>
+                                    <p><a href="http://hao.ssjjss.com">设 计 师</a></p>
+                                    <p><a href="https://www.vectorizer.io">矢 量 图</a></p>
+                                </td>
+                                <td width="16%">
+                                    <p><a href="https://www.aliyundrive.com/sign/in">阿 里 云</a></p>
+                                    <p><a href="https://pan.baidu.com/disk/home">百 度 云</a></p>
+                                    <p><a href="https://pan.quark.cn">夸克网盘</a></p>
+                                    <p><a href="https://wenku.baidu.com/">百度文库</a></p>
+                                    <p><a href="https://www.docin.com/">豆丁文库</a></p>
+                                    <p><a href="https://www.bilibili.com">哔哩哔哩</a></p>
+                                    <p><a href="https://www.gndown.com">绿软小站</a></p>
+                                    <p><a href="https://www.67tool.com/">即时工具</a></p>
+                                    <p><a href="https://www.weiyun.com/disk">腾讯云盘</a></p>
+                                    <p><a href="https://www.qtool.net/">站长工具</a></p>
+                                    <p><a href="https://www.lmcjl.com">工具大全</a></p>
+                                    <p><a href="https://www.logosc.cn/design/profile">图标生成</a></p>
+                                    <p><a href="http://paper.people.com.cn/rmrb/html/2022-10/18/nbs.D110000renmrb_01.htm">人 民 网</a></p>
+                                    <p><a href="https://www.qiuziti.com">求 字 体</a></p>
+                                    <p><a href="https://www.100font.com">免费字体</a></p>
+                                    <p><a href="http://www.bigpixel.cn/">像素中国</a></p>
+                                    <p><a href="https://www.toutiao.com">今日头条</a></p>
+                                    <p><a href="https://www.allhistory.com">全 历 史</a></p>
+                                    <p><a href="http://www.timecn.cn">全民解析</a></p>
+                                    <p><a href="https://www.logosc.cn/logo/badge">印章生成</a></p>
+                                </td>
+                                <td width="16%">
+                                    <p><a href="https://weixin.sogou.com">微信搜索</a></p>
+                                    <p><a href="https://www.nona.de">翻墙搜索</a></p>
+                                    <p><a href="https://zhongduanju.com">众 短 剧</a></p>
+                                    <p><a href="https://www.laisoyixia.com">来 搜 索</a></p>
+                                    <p><a href="https://bt1207ci.xyz">BT搜索</a></p>
+                                    <p><a href="https://tool.browser.qq.com">帮 小 忙</a></p>
+                                    <p><a href="https://zlib.wwwnav.com">Z-Librar</a></p>
+                                    <p><a href="https://yiso.fun">易 搜 索</a></p>
+                                    <p><a href="http://www.dajiadaohang.com/">打假查询</a></p>
+                                    <p><a href="https://www.douyin.com/user/MS4wLjABAAAAbGHXFATH4DtSNDemhG8FJfyX9Wp0H3wzP5A5j-DRAGk">手机摄影</a></p>
+                                    <p><a href="https://www.douyin.com/user/MS4wLjABAAAAmgyYzPPckLcSoKKVCek9KF4F4MB2faSA9O6DtBQmCRI">国会在线</a></p>
+                                    <p><a href="https://fanyi.youdao.com">有道翻译</a></p>
+                                    <p><a href="https://www.52hb.com">学 破 解</a></p>
+                                    <p><a href="https://www.cn-ki.net">检索知识</a></p>
+                                    <p><a href="http://www.hzwyx.net">范 文 网</a></p>
+                                    <p><a href="https://www.manongbook.com">码农书社</a></p>
+                                    <p><a href="https://mp.weixin.qq.com/">公 众 号</a></p>
+                                    <p><a href="https://233heji.com">合 集 网</a></p>
+                                    <p><a href="https://aiqicha.baidu.com">爱 企 查</a></p>
+                                    <p><a href="https://ima.qq.com">知 识 库</a></p>
+                                </td>
+                                <td width="16%">
+                                    <p><a href="https://www.cls.cn/telegraph/">财 联 社</a></p>
+                                    <p><a href="https://xuangutong.com.cn/live">选 股 通</a></p>
+                                    <p><a href="https://duanxianxia.com">短 线 宝</a></p>
+                                    <p><a href="https://www.tgb.cn/newIndex">淘 股 吧</a></p>
+                                    <p><a href="https://www.guhai.com.cn/">股 海 网</a></p>
+                                    <p><a href="http://cwzx.shdjt.com">仓位在线</a></p>
+                                    <p><a href="http://www.iwencai.com/unifiedwap/home/index/">问财投顾</a></p>
+                                    <p><a href="https://www.oschina.net/project">开源社区</a></p>
+                                    <p><a href="http://www.cninfo.com.cn/new/index">巨潮资讯</a></p>
+                                    <p><a href="http://www.bathome.net/">批 处 理</a></p>
+                                    <p><a href="https://greasyfork.org/zh-CN">油猴脚本</a></p>
+                                    <p><a href="https://www.ypojie.com/pc">亿 破 姐</a></p>
+                                    <p><a href="https://www.hybase.com/">黑域基地</a></p>
+                                    <p><a href="http://www.icpcw.com">电 脑 报</a></p>
+                                    <p><a href="https://msdn.itellyou.cn">系统下载</a></p>
+                                    <p><a href="https://sonic.volf.club">音速装机</a></p>
+                                    <p><a href="http://so.kaiwang-nm.com">秒 搜</a></p>
+                                    <p><a href="https://www.91sotu.com">搜图导航</a></p>
+                                    <p><a href="https://www.whatbuytoday.com">今天买啥</a></p>
+                                    <p><a href="https://720yun.com/">VR旅游</a></p>
+                                </td>
+                                <td width="16%">
+                                    <p><a href="https://www.speedtest.cn/">测 网 速</a></p>
+                                    <p><a href="http://www.taobao.com/">淘 宝 网</a></p>
+                                    <p><a href="https://www.crxsoso.com">搜 扩 展</a></p>
+                                    <p><a href="https://www.meijumi.net/">美 剧 迷</a></p>
+                                    <p><a href="https://movie.douban.com">豆瓣电影</a></p>
+                                    <p><a href="https://www.iqiyi.com/">爱 奇 艺</a></p>
+                                    <p><a href="https://v.qq.com/">腾讯视频</a></p>
+                                    <p><a href="https://www.bilivod.com">哔哩影视</a></p>
+                                    <p><a href="https://www.zhihu.com/search?q=&type=content">知 乎</a></p>
+                                    <p><a href="https://jishi.cctv.comt">央视纪实</a></p>
+                                    <p><a href="https://kimivod.com">电影驿站</a></p>
+                                    <p><a href="https://www.kanjujitv.com">金牌影院</a></p>
+                                    <p><a href="https://www.netflixgc.com">奈飞影视</a></p>
+                                    <p><a href="https://www.meipian.cn/hot">美 篇</a></p>
+                                    <p><a href="https://bar.ssstab.com">工具搜索</a></p>
+                                    <p><a href="https://github.com/xx025/carrot">G P T</a></p>
+                                    <p><a href="https://tuostudy.upnb.top">图欧资源</a></p>
+                                    <p><a href="http://www.world68.com">世界网址</a></p>
+                                    <p><a href="https://map.baidu.com/">百度地图</a></p>
+                                    <p><a href="https://parse.bqrdh.com/smart/">视频解析</a></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="bottomnav" style="position:fixed; bottom:0;right:0;">
+        <p><a href="#top" target="_self"><img alt="" src="39.png" style="width: 60px; height: 78px;" /></a></p>
+        <p>&nbsp;&nbsp;</p>
+    </div>
+
+    <!-- 版权声明 -->
+    <div style="text-align: center; margin-top: 20px;">
+        <p style="color: #FF0000; font-weight: bold;">本网址导航只限于景盛资产管理有限公司使用，未经授权许可，私自分享传播，将追究法律责任！</p>
+    </div>
+
+    <!-- 新年倒计时 -->
+    <div class="gn_box">
+        <h1>
+            <font color=#E80017>2</font>
+            <font color=#D1002E>0</font>
+            <font color=#BA0045>2</font>
+            <font color=#A3005C>7</font>
+            <font color=#8C0073>年</font>
+            <font color=#75008A>-</font>
+            <font color=#5E00A1>新</font>
+            <font color=#4700B8>年</font>
+            <font color=#3000CF>倒</font>
+            <font color=#1900E6>计</font>
+            <font color=#0200FD>时</font>
+        </h1>
+        <div id="CountMsg" class="HotDate">
+            <span id="t_d">0 天</span>
+            <span id="t_h">0 时</span>
+            <span id="t_m">0 分</span>
+            <span id="t_s">0 秒</span>
+        </div>
+    </div>
+    <script type="text/javascript">
+        class NewYearCountdown {
+            constructor(targetDate) {
+                this.targetDate = new Date(targetDate);
+                this.elements = {
+                    days: document.getElementById('t_d'),
+                    hours: document.getElementById('t_h'),
+                    minutes: document.getElementById('t_m'),
+                    seconds: document.getElementById('t_s')
+                };
+                this.init();
+            }
+            init() {
+                this.update();
+                this.timer = setInterval(() => this.update(), 1000);
+            }
+            update() {
+                const now = new Date();
+                let difference = this.targetDate - now;
+                if (difference <= 0) {
+                    difference = 0;
+                    clearInterval(this.timer);
+                }
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+                this.elements.days.textContent = `${days} 天`;
+                this.elements.hours.textContent = `${hours} 时`;
+                this.elements.minutes.textContent = `${minutes} 分`;
+                this.elements.seconds.textContent = `${seconds} 秒`;
+                this.animateElement(this.elements.seconds);
+            }
+            animateElement(element) {
+                element.classList.add('pulse');
+                setTimeout(() => {
+                    element.classList.remove('pulse');
+                }, 300);
+            }
+        }
+        const style = document.createElement('style');
+        style.textContent = `
+                @keyframes pulse {
+                    0% { transform: scale(1); }
+                    50% { transform: scale(1.1); }
+                    100% { transform: scale(1); }
+                }
+                .pulse { animation: pulse 0.3s ease-in-out; }
+            `;
+        document.head.appendChild(style);
+        document.addEventListener('DOMContentLoaded', () => {
+            new NewYearCountdown('2027/1/1 00:00:00');
+        });
+    </script>
+</body>
+</html>
+
