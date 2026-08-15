@@ -1,12 +1,12 @@
 	<html>
 	<head>
-		<title>Ë³Æä×ÔÈ»</title>
+<meta charset="UTF-8">
+		<title>é¡ºå…¶è‡ªç„¶</title>
 		<link href="i.png" rel="Shortcut Icon" type="image/x-icon">
 		<link rel="stylesheet" href="a.css" type="text/css">
-		<script src="http://pv.sohu.com/cityjson"></script>
 		<base target="_blank" />
 		<style>
-			/* ÐÂÄêµ¹¼ÆÊ±ÑùÊ½ÓÅ»¯ - Í¬Ò»ÐÐÏÔÊ¾ */
+			/* æ–°å¹´å€’è®¡æ—¶æ ·å¼ä¼˜åŒ– - åŒä¸€è¡Œæ˜¾ç¤º */
 			.gn_box {
 				padding: 10px;
 				margin: 10px auto;
@@ -45,7 +45,7 @@
 			#CountMsg span:hover {
 				transform: scale(1.05);
 			}
-			/* ËÑË÷¿òÑùÊ½ÓÅ»¯ - ¸ü×¨ÒµµÄÑùÊ½ */
+			/* æœç´¢æ¡†æ ·å¼ä¼˜åŒ– - æ›´ä¸“ä¸šçš„æ ·å¼ */
 			.search-container {
 				width: 450px;
 				margin: 15px auto;
@@ -112,21 +112,21 @@
 			<span style="font-size:38px;font-weight: bold;position:absolute;left:10px;top:50%;transform:translateY(-50%);">
 				<a href="http://www.mydm83.com:1983"><img src="66.png" style="width: 90px; height: 80px; vertical-align: middle;" /></a>
 			</span>
-			<span style="font-size:48px;font-weight: bold;margin-left:100px;font-family: »ªÎÄÖÐËÎ, STZhongsong, serif;letter-spacing: 2px;text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">Ñ§&nbsp;&nbsp;ÎÞ&nbsp;&nbsp;Ö¹&nbsp;&nbsp;¾³</span>
-			<span style="font-size:48px;font-weight: bold;font-family: »ªÎÄÖÐËÎ, STZhongsong, serif;letter-spacing: 2px;text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">Öª&nbsp;&nbsp;ÐÐ&nbsp;&nbsp;ºÏ&nbsp;&nbsp;Ò»</span>
+			<span style="font-size:48px;font-weight: bold;margin-left:100px;font-family: åŽæ–‡ä¸­å®‹, STZhongsong, serif;letter-spacing: 2px;text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">å­¦&nbsp;&nbsp;æ— &nbsp;&nbsp;æ­¢&nbsp;&nbsp;å¢ƒ</span>
+			<span style="font-size:48px;font-weight: bold;font-family: åŽæ–‡ä¸­å®‹, STZhongsong, serif;letter-spacing: 2px;text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">çŸ¥&nbsp;&nbsp;è¡Œ&nbsp;&nbsp;åˆ&nbsp;&nbsp;ä¸€</span>
 		</p>
 	</div>
-	<div id="webjx" style="text-align: center;">µ±Ç°Ê±¼ä</div>
-	<script>setInterval("webjx.innerHTML=new Date().toLocaleString()+' ÐÇÆÚ'+'ÈÕÒ»¶þÈýËÄÎåÁù'.charAt(new Date().getDay());",1000);</script>
-	<!-- ÓÅ»¯ºóµÄËÑË÷²¿·Ö -->
+	<div id="webjx" style="text-align: center;">å½“å‰æ—¶é—´</div>
+	<script>setInterval("webjx.innerHTML=new Date().toLocaleString()+' æ˜ŸæœŸ'+'æ—¥ä¸€äºŒä¸‰å››äº”å…­'.charAt(new Date().getDay());",1000);</script>
+	<!-- ä¼˜åŒ–åŽçš„æœç´¢éƒ¨åˆ† -->
 	<div class="search-container">
 		<select class="search-select" id="searchEngine">
-			<option value="baidu">°Ù¶ÈËÑË÷</option>
-			<option value="bing">±ØÓ¦ËÑË÷</option>
-			<option value="360">360ËÑË÷</option>
+			<option value="baidu">ç™¾åº¦æœç´¢</option>
+			<option value="bing">å¿…åº”æœç´¢</option>
+			<option value="360">360æœç´¢</option>
 		</select>
-		<input id="searchInput" class="search-input" type="search" placeholder="ÇëÊäÈëËÑË÷ÄÚÈÝ..." />
-		<button class="search-button" onclick="performSearch()">ËÑË÷</button>
+		<input id="searchInput" class="search-input" type="search" placeholder="è¯·è¾“å…¥æœç´¢å†…å®¹..." />
+		<button class="search-button" onclick="performSearch()">æœç´¢</button>
 	</div>
 	<script>
 		function performSearch() {
@@ -148,7 +148,7 @@
 				window.open(searchUrl, '_blank');
 			}
 		}
-		// Ö§³Ö»Ø³µ¼üËÑË÷
+		// æ”¯æŒå›žè½¦é”®æœç´¢
 		document.getElementById('searchInput').addEventListener('keypress', function(e) {
 			if(e.key === 'Enter') {
 				performSearch();
@@ -163,9 +163,18 @@
 				<p><span style="float: left;">&nbsp;&nbsp;</span></p>
 				</td>
 				<td style="width:25%">
-				<p style="font-size: 12px;"><script type="text/javascript">
-					document.write('µ±Ç°IP£º'+returnCitySN["cip"])
-				</script></p>
+				<p style="font-size: 12px;" id="ip-display">å½“å‰IPï¼šèŽ·å–ä¸­...</p>
+<script>
+fetch("https://ipapi.co/json/")
+.then(r => r.json())
+.then(d => {
+document.getElementById("ip-display").textContent =
+"å½“å‰IPï¼š" + d.ip + "ï¼ˆ" + (d.city || d.region || "") + "ï¼‰";
+})
+.catch(() => {
+document.getElementById("ip-display").textContent = "å½“å‰IPï¼šèŽ·å–å¤±è´¥";
+});
+</script>
 				</td>
 			</tr>
 		</tbody>
@@ -181,133 +190,134 @@
 	<p><a href="http://tplogin.cn/">TPLINK</a></p>
 	<p><a href="https://pgybox.oray.com/">P G Y</a></p>			
 	<p><a href="https://chat.scnet.cn/">S E E K</a></p>
-	<p><a href="https://bigmodel.cn">ÖÇÆ×ÇåÑÔ</a></p>
+	<p><a href="https://bigmodel.cn">æ™ºè°±æ¸…è¨€</a></p>
 	<p><a href="https://chat.deepseek.com/a/chat/s/f0ee7160-7a9f-4522-a782-58558557c325">D E E P</a></p>
-	<p><a href="https://jimeng.jianying.com/ai-tool/home">¼´ÃÎAI</a></p>
-	<p><a href="https://www.wenxiaobai.com/chat/200006">ÎÊ Ð¡ °×</a></p>                                                                                             
-	<p><a href="https://next.itellyou.cn/Original/">Ô­°æÏµÍ³</a></p>
-	<p><a href="https://yiyan.baidu.com">ÎÄÐÄÒ»ÑÔ</a></p>
-	<p><a href="https://www.douyin.com/">¶¶ÒôPC</a></p>
-	<p><a href="https://www.doubao.com/chat/?channel=baidu_pz&source=db_baidu_pz_01&keywordid=weizhi7"> ¶¹  °ü</a></p>
+	<p><a href="https://jimeng.jianying.com/ai-tool/home">å³æ¢¦AI</a></p>
+	<p><a href="https://www.wenxiaobai.com/chat/200006">é—® å° ç™½</a></p>                                                                                             
+	<p><a href="https://next.itellyou.cn/Original/">åŽŸç‰ˆç³»ç»Ÿ</a></p>
+	<p><a href="https://yiyan.baidu.com">æ–‡å¿ƒä¸€è¨€</a></p>
+	<p><a href="https://www.douyin.com/">æŠ–éŸ³PC</a></p>
+	<p><a href="https://www.doubao.com/chat/?channel=baidu_pz&source=db_baidu_pz_01&keywordid=weizhi7"> è±†  åŒ…</a></p>
 	<p><a href="https://kimi.moonshot.cn/chat/cpapcvpkqq4uupkeepfg">K I M I</a></p>
 	<p><a href="https://github.com">GITHUB</a></p>
-	<p><a href="https://www.55188.com/">ÀíÏëÂÛÌ³</a></p>
-	<p><a href="https://www.52pojie.cn/">Îá°®ÆÆ½â</a></p>
+	<p><a href="https://www.55188.com/">ç†æƒ³è®ºå›</a></p>
+	<p><a href="https://www.52pojie.cn/">å¾çˆ±ç ´è§£</a></p>
 	<p><a href="https://gitee.com/explore">GITEE</a></p>
 	<p><a href="https://www.csdn.net">C S D N</a></p>
-	<p><a href="https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Faccount-devops.aliyun.com%2Flogin%3Fnext_url%3Dhttp%3A%2F%2Faccount-devops.aliyun.com%2Flogin%3Fnext_url%3Dhttp%253A%252F%252Fcodeup.aliyun.com%252F">°¢ÀïÔÆ</a></p>
-	<p><a href="https://mail.163.com/js6/main.jsp?sid=RDHHZPuACtUewHYfnEAAzayXHWieoloy&df=mail163_letter#module=welcome.WelcomeModule%7C%7B%7D">163ÓÊÏä</a></p>
-	<p><a href="https://wannianrili.bmcx.com">Íò Äê Àú</a></p>
+	<p><a href="https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Faccount-devops.aliyun.com%2Flogin%3Fnext_url%3Dhttp%3A%2F%2Faccount-devops.aliyun.com%2Flogin%3Fnext_url%3Dhttp%253A%252F%252Fcodeup.aliyun.com%252F">é˜¿é‡Œäº‘</a></p>
+	<p><a href="https://mail.163.com/js6/main.jsp?sid=RDHHZPuACtUewHYfnEAAzayXHWieoloy&df=mail163_letter#module=welcome.WelcomeModule%7C%7B%7D">163é‚®ç®±</a></p>
+	<p><a href="https://wannianrili.bmcx.com">ä¸‡ å¹´ åŽ†</a></p>
 							</td>
 	<td width="16%">
-	<p><a href="https://818ps.com/">Í¼ ¹Ö ÊÞ</a></p>
-	<p><a href="https://699pic.com/">Éã Í¼ Íø</a></p>
-	<p><a href="https://www.gaituya.com">¸Ä Í¼ Ñ¼</a></p>
-	<p><a href="https://www.pexels.com/zh-cn/">Í¼Æ¬ËØ²Ä</a></p>
-	<p><a href="https://www.picup.shop/currency.html">Ò»¼ü¿ÙÍ¼</a></p>
-	<p><a href="https://www.chuangkit.com/">´´ ¿Í Ìù</a></p>
-	<p><a href="https://www.58pic.com">Ç§ Í¼ Íø</a></p>
-	<p><a href="https://www.logosc.cn/start">±ê Ð¡ ÖÇ</a></p>
-	 <p><a href="https://bigjpg.com/">AI·Å´ó</a></p>
-	<p><a href="https://www.remove.bg/zh">È¥ ±³ ¾°</a></p>
-	<p><a href="https://quququ.cn">È¥ Ë® Ó¡</a></p>                                                                                    
-	<p><a href="https://zypuu.com">×Ê Ô´ ÆÌ</a></p>
-	<p><a href="https://www.gaoding.com">¸å¶¨Éè¼Æ</a></p>
-	<p><a href="https://www.99ppt.com">µ± Í¼ Íø</a></p>
-	<p><a href="https://magicstudio.com/magiceraser">Ä§·¨ÏðÆ¤</a></p>
-	<p><a href="https://space.bilibili.com/28457">Ë¾ ²¨ Í¼</a></p>
-	<p><a href="https://www.bookmarkearth.cn">ÊéÇ©µØÇò</a></p>
-	<p><a href="https://www.fotor.com.cn">ÀÁ Éè ¼Æ</a></p>
-	<p><a href="http://hao.ssjjss.com">Éè ¼Æ Ê¦</a></p>
-	<p><a href="https://www.vectorizer.io">Ê¸ Á¿ Í¼</a></p>
+	<p><a href="https://818ps.com/">å›¾ æ€ª å…½</a></p>
+	<p><a href="https://699pic.com/">æ‘„ å›¾ ç½‘</a></p>
+	<p><a href="https://www.gaituya.com">æ”¹ å›¾ é¸­</a></p>
+	<p><a href="https://www.pexels.com/zh-cn/">å›¾ç‰‡ç´ æ</a></p>
+	<p><a href="https://www.picup.shop/currency.html">ä¸€é”®æŠ å›¾</a></p>
+	<p><a href="https://www.chuangkit.com/">åˆ› å®¢ è´´</a></p>
+	<p><a href="https://www.58pic.com">åƒ å›¾ ç½‘</a></p>
+	<p><a href="https://www.logosc.cn/start">æ ‡ å° æ™º</a></p>
+	 <p><a href="https://bigjpg.com/">AIæ”¾å¤§</a></p>
+	<p><a href="https://www.remove.bg/zh">åŽ» èƒŒ æ™¯</a></p>
+	<p><a href="https://quququ.cn">åŽ» æ°´ å°</a></p>                                                                                    
+	<p><a href="https://zypuu.com">èµ„ æº é“º</a></p>
+	<p><a href="https://www.gaoding.com">ç¨¿å®šè®¾è®¡</a></p>
+	<p><a href="https://www.99ppt.com">å½“ å›¾ ç½‘</a></p>
+	<p><a href="https://magicstudio.com/magiceraser">é­”æ³•æ©¡çš®</a></p>
+	<p><a href="https://space.bilibili.com/28457">å¸ æ³¢ å›¾</a></p>
+	<p><a href="https://www.bookmarkearth.cn">ä¹¦ç­¾åœ°çƒ</a></p>
+	<p><a href="https://www.fotor.com.cn">æ‡’ è®¾ è®¡</a></p>
+	<p><a href="http://hao.ssjjss.com">è®¾ è®¡ å¸ˆ</a></p>
+	<p><a href="https://www.vectorizer.io">çŸ¢ é‡ å›¾</a></p>
 	                                                                                                   </td>
 	<td width="16%">
-	<p><a href="https://www.aliyundrive.com/sign/in">°¢ Àï ÔÆ</a></p>
-	<p><a href="https://pan.baidu.com/disk/home">°Ù ¶È ÔÆ</a></p>
-	<p><a href="https://pan.quark.cn">¿ä¿ËÍøÅÌ</a></p>						
-	<p><a href="https://wenku.baidu.com/">°Ù¶ÈÎÄ¿â</a></p>
-	<p><a href="https://www.docin.com/">¶¹¶¡ÎÄ¿â</a></p>
-	<p><a href="https://www.bilibili.com">ßÙÁ¨ßÙÁ¨</a></p>
-	<p><a href="https://www.gndown.com">ÂÌÈíÐ¡Õ¾</a></p>
-	<p><a href="https://www.67tool.com/">¼´Ê±¹¤¾ß</a></p>
-	<p><a href="https://www.weiyun.com/disk">ÌÚÑ¶ÔÆÅÌ</a></p>
-	<p><a href="https://www.qtool.net/">Õ¾³¤¹¤¾ß</a></p>
-	<p><a href="https://www.lmcjl.com">¹¤¾ß´óÈ«</a></p>
-	<p><a href="https://www.logosc.cn/design/profile">Í¼±êÉú³É</a></p>
-	<p><a href="http://paper.people.com.cn/rmrb/html/2022-10/18/nbs.D110000renmrb_01.htm">ÈË Ãñ Íø</a></p>
-	<p><a href="https://www.qiuziti.com">Çó ×Ö Ìå</a></p>
-	<p><a href="https://www.100font.com">Ãâ·Ñ×ÖÌå</a></p>
-	<p><a href="http://www.bigpixel.cn/">ÏñËØÖÐ¹ú</a></p>
-	<p><a href="https://www.toutiao.com">½ñÈÕÍ·Ìõ</a></p>
-	<p><a href="https://www.allhistory.com">È« Àú Ê·</a></p>
-	<p><a href="http://www.timecn.cn">È«Ãñ½âÎö</a></p>
-	<p><a href="https://www.logosc.cn/logo/badge">Ó¡ÕÂÉú³É</a></p>
+	<p><a href="https://www.aliyundrive.com/sign/in">é˜¿ é‡Œ äº‘</a></p>
+	<p><a href="https://pan.baidu.com/disk/home">ç™¾ åº¦ äº‘</a></p>
+	<p><a href="https://pan.quark.cn">å¤¸å…‹ç½‘ç›˜</a></p>						
+	<p><a href="https://wenku.baidu.com/">ç™¾åº¦æ–‡åº“</a></p>
+	<p><a href="https://www.docin.com/">è±†ä¸æ–‡åº“</a></p>
+	<p><a href="https://www.bilibili.com">å“”å“©å“”å“©</a></p>
+	<p><a href="https://www.gndown.com">ç»¿è½¯å°ç«™</a></p>
+	<p><a href="https://www.67tool.com/">å³æ—¶å·¥å…·</a></p>
+	<p><a href="https://www.weiyun.com/disk">è…¾è®¯äº‘ç›˜</a></p>
+
+	<p><a href="https://www.qtool.net/">ç«™é•¿å·¥å…·</a></p>
+	<p><a href="https://www.lmcjl.com">å·¥å…·å¤§å…¨</a></p>
+	<p><a href="https://www.logosc.cn/design/profile">å›¾æ ‡ç”Ÿæˆ</a></p>
+	<p><a href="http://paper.people.com.cn/rmrb/html/2022-10/18/nbs.D110000renmrb_01.htm">äºº æ°‘ ç½‘</a></p>
+	<p><a href="https://www.qiuziti.com">æ±‚ å­— ä½“</a></p>
+	<p><a href="https://www.100font.com">å…è´¹å­—ä½“</a></p>
+	<p><a href="http://www.bigpixel.cn/">åƒç´ ä¸­å›½</a></p>
+	<p><a href="https://www.toutiao.com">ä»Šæ—¥å¤´æ¡</a></p>
+	<p><a href="https://www.allhistory.com">å…¨ åŽ† å²</a></p>
+	<p><a href="http://www.timecn.cn">å…¨æ°‘è§£æž</a></p>
+	<p><a href="https://www.logosc.cn/logo/badge">å°ç« ç”Ÿæˆ</a></p>
 							</td>
 	<td width="16%">
-	<p><a href="https://weixin.sogou.com">Î¢ÐÅËÑË÷</a></p>
-	<p><a href="https://www.nona.de">·­Ç½ËÑË÷</a></p>
-	<p><a href="https://zhongduanju.com">ÖÚ ¶Ì ¾ç</a></p>
-	<p><a href="https://www.laisoyixia.com">À´ ËÑ Ë÷</a></p>
-	<p><a href="https://bt1207ci.xyz">BTËÑË÷</a></p>
-	<p><a href="https://tool.browser.qq.com">°ï Ð¡ Ã¦</a></p>
+	<p><a href="https://weixin.sogou.com">å¾®ä¿¡æœç´¢</a></p>
+	<p><a href="https://www.nona.de">ç¿»å¢™æœç´¢</a></p>
+	<p><a href="https://zhongduanju.com">ä¼— çŸ­ å‰§</a></p>
+	<p><a href="https://www.laisoyixia.com">æ¥ æœ ç´¢</a></p>
+	<p><a href="https://bt1207ci.xyz">BTæœç´¢</a></p>
+	<p><a href="https://tool.browser.qq.com">å¸® å° å¿™</a></p>
 	<p><a href="https://zlib.wwwnav.com">Z-Librar</a></p>
-	<p><a href="https://yiso.fun">Ò× ËÑ Ë÷</a></p>
-	<p><a href="http://www.dajiadaohang.com/">´ò¼Ù²éÑ¯</a></p>
-	<p><a href="https://www.douyin.com/user/MS4wLjABAAAAbGHXFATH4DtSNDemhG8FJfyX9Wp0H3wzP5A5j-DRAGk">ÊÖ»úÉãÓ°</a></p>
-	<p><a href="https://www.douyin.com/user/MS4wLjABAAAAmgyYzPPckLcSoKKVCek9KF4F4MB2faSA9O6DtBQmCRI">¹ú»áÔÚÏß</a></p>
-	<p><a href="https://fanyi.youdao.com">ÓÐµÀ·­Òë</a></p>
-	<p><a href="https://www.52hb.com">Ñ§ ÆÆ ½â</a></p>
-	<p><a href="https://www.cn-ki.net">¼ìË÷ÖªÊ¶</a></p>
-	<p><a href="http://www.hzwyx.net">·¶ ÎÄ Íø</a></p>
-	<p><a href="https://www.manongbook.com">ÂëÅ©ÊéÉç</a></p>
-	<p><a href="https://mp.weixin.qq.com/">¹« ÖÚ ºÅ</a></p>
-	<p><a href="https://233heji.com">ºÏ ¼¯ Íø</a></p>
-	<p><a href="https://aiqicha.baidu.com">°® Æó ²é</a></p>
-	<p><a href="https://ima.qq.com">Öª Ê¶ ¿â</a></p>
+	<p><a href="https://yiso.fun">æ˜“ æœ ç´¢</a></p>
+	<p><a href="http://www.dajiadaohang.com/">æ‰“å‡æŸ¥è¯¢</a></p>
+	<p><a href="https://www.douyin.com/user/MS4wLjABAAAAbGHXFATH4DtSNDemhG8FJfyX9Wp0H3wzP5A5j-DRAGk">æ‰‹æœºæ‘„å½±</a></p>
+	<p><a href="https://www.douyin.com/user/MS4wLjABAAAAmgyYzPPckLcSoKKVCek9KF4F4MB2faSA9O6DtBQmCRI">å›½ä¼šåœ¨çº¿</a></p>
+	<p><a href="https://fanyi.youdao.com">æœ‰é“ç¿»è¯‘</a></p>
+	<p><a href="https://www.52hb.com">å­¦ ç ´ è§£</a></p>
+	<p><a href="https://www.cn-ki.net">æ£€ç´¢çŸ¥è¯†</a></p>
+	<p><a href="http://www.hzwyx.net">èŒƒ æ–‡ ç½‘</a></p>
+	<p><a href="https://www.manongbook.com">ç å†œä¹¦ç¤¾</a></p>
+	<p><a href="https://mp.weixin.qq.com/">å…¬ ä¼— å·</a></p>
+	<p><a href="https://233heji.com">åˆ é›† ç½‘</a></p>
+	<p><a href="https://aiqicha.baidu.com">çˆ± ä¼ æŸ¥</a></p>
+	<p><a href="https://ima.qq.com">çŸ¥ è¯† åº“</a></p>
 	</td>
 							<td width="16%">
-	<p><a href="https://www.cls.cn/telegraph/">²Æ Áª Éç</a></p>
-	<p><a href="https://xuangutong.com.cn/live">Ñ¡ ¹É Í¨</a></p>
-	<p><a href="https://duanxianxia.com">¶Ì Ïß ±¦</a></p>
-	<p><a href="https://www.tgb.cn/newIndex">ÌÔ ¹É °É</a></p>
-	<p><a href="https://www.guhai.com.cn/">¹É º£ Íø</a></p>
-	<p><a href="http://cwzx.shdjt.com">²ÖÎ»ÔÚÏß</a></p>
-	<p><a href="http://www.iwencai.com/unifiedwap/home/index/">ÎÊ²ÆÍ¶¹Ë</a></p>
-	<p><a href="https://www.oschina.net/project">¿ªÔ´ÉçÇø</a></p>
-	<p><a href="http://www.cninfo.com.cn/new/index">¾Þ³±×ÊÑ¶</a></p>
-	<p><a href="http://www.bathome.net/">Åú ´¦ Àí</a></p>
-	<p><a href="https://greasyfork.org/zh-CN">ÓÍºï½Å±¾</a></p>
-	<p><a href="https://www.ypojie.com/pc">ÒÚ ÆÆ ½ã</a></p>
-	<p><a href="https://www.hybase.com/">ºÚÓò»ùµØ</a></p>
-	<p><a href="http://www.icpcw.com">µç ÄÔ ±¨</a></p>
-	<p><a href="https://msdn.itellyou.cn">ÏµÍ³ÏÂÔØ</a></p>
-	<p><a href="https://sonic.volf.club">ÒôËÙ×°»ú</a></p>
-	<p><a href="http://so.kaiwang-nm.com">Ãë     ËÑ</a></p>
-	<p><a href="https://www.91sotu.com">ËÑÍ¼µ¼º½</a></p>
-	<p><a href="https://www.whatbuytoday.com">½ñÌìÂòÉ¶</a></p>
-	<p><a href="https://720yun.com/">VRÂÃÓÎ</a></p>
+	<p><a href="https://www.cls.cn/telegraph/">è´¢ è” ç¤¾</a></p>
+	<p><a href="https://xuangutong.com.cn/live">é€‰ è‚¡ é€š</a></p>
+	<p><a href="https://duanxianxia.com">çŸ­ çº¿ å®</a></p>
+	<p><a href="https://www.tgb.cn/newIndex">æ·˜ è‚¡ å§</a></p>
+	<p><a href="https://www.guhai.com.cn/">è‚¡ æµ· ç½‘</a></p>
+	<p><a href="http://cwzx.shdjt.com">ä»“ä½åœ¨çº¿</a></p>
+	<p><a href="http://www.iwencai.com/unifiedwap/home/index/">é—®è´¢æŠ•é¡¾</a></p>
+	<p><a href="https://www.oschina.net/project">å¼€æºç¤¾åŒº</a></p>
+	<p><a href="http://www.cninfo.com.cn/new/index">å·¨æ½®èµ„è®¯</a></p>
+	<p><a href="http://www.bathome.net/">æ‰¹ å¤„ ç†</a></p>
+	<p><a href="https://greasyfork.org/zh-CN">æ²¹çŒ´è„šæœ¬</a></p>
+	<p><a href="https://www.ypojie.com/pc">äº¿ ç ´ å§</a></p>
+	<p><a href="https://www.hybase.com/">é»‘åŸŸåŸºåœ°</a></p>
+	<p><a href="http://www.icpcw.com">ç”µ è„‘ æŠ¥</a></p>
+	<p><a href="https://msdn.itellyou.cn">ç³»ç»Ÿä¸‹è½½</a></p>
+	<p><a href="https://sonic.volf.club">éŸ³é€Ÿè£…æœº</a></p>
+	<p><a href="http://so.kaiwang-nm.com">ç§’     æœ</a></p>
+	<p><a href="https://www.91sotu.com">æœå›¾å¯¼èˆª</a></p>
+	<p><a href="https://www.whatbuytoday.com">ä»Šå¤©ä¹°å•¥</a></p>
+	<p><a href="https://720yun.com/">VRæ—…æ¸¸</a></p>
 							</td>
 	<td width="16%">
-	<p><a href="https://www.speedtest.cn/">²â Íø ËÙ</a></p>
-	<p><a href="http://www.taobao.com/">ÌÔ ±¦ Íø</a></p>
-	<p><a href="https://www.crxsoso.com">ËÑ À© Õ¹ </a></p>
-	<p><a href="https://www.meijumi.net/">ÃÀ ¾ç ÃÔ</a></p>
-	<p><a href="https://movie.douban.com">¶¹°êµçÓ°</a></p>
-	<p><a href="https://www.iqiyi.com/">°® Ææ ÒÕ</a></p>
-	<p><a href="https://v.qq.com/">ÌÚÑ¶ÊÓÆµ</a></p>
-	<p><a href="https://www.bilivod.com">ßÙÁ¨Ó°ÊÓ</a></p>
-	<p><a href="https://www.zhihu.com/search?q=&type=content">Öª      ºõ</a></p>
-	<p><a href="https://jishi.cctv.comt">ÑëÊÓ¼ÍÊµ</a></p>
-	<p><a href="https://kimivod.com">µçÓ°æäÕ¾</a></p>
-	<p><a href="https://www.kanjujitv.com">½ðÅÆÓ°Ôº</a></p>
-	<p><a href="https://www.netflixgc.com">ÄÎ·ÉÓ°ÊÓ</a></p>
-	<p><a href="https://www.meipian.cn/hot">ÃÀ   Æª</a></p>
-	<p><a href="https://bar.ssstab.com">¹¤¾ßËÑË÷</a></p>
+	<p><a href="https://www.speedtest.cn/">æµ‹ ç½‘ é€Ÿ</a></p>
+	<p><a href="http://www.taobao.com/">æ·˜ å® ç½‘</a></p>
+	<p><a href="https://www.crxsoso.com">æœ æ‰© å±• </a></p>
+	<p><a href="https://www.meijumi.net/">ç¾Ž å‰§ è¿·</a></p>
+	<p><a href="https://movie.douban.com">è±†ç“£ç”µå½±</a></p>
+	<p><a href="https://www.iqiyi.com/">çˆ± å¥‡ è‰º</a></p>
+	<p><a href="https://v.qq.com/">è…¾è®¯è§†é¢‘</a></p>
+	<p><a href="https://www.bilivod.com">å“”å“©å½±è§†</a></p>
+	<p><a href="https://www.zhihu.com/search?q=&type=content">çŸ¥      ä¹Ž</a></p>
+	<p><a href="https://jishi.cctv.comt">å¤®è§†çºªå®ž</a></p>
+	<p><a href="https://kimivod.com">ç”µå½±é©¿ç«™</a></p>
+	<p><a href="https://www.kanjujitv.com">é‡‘ç‰Œå½±é™¢</a></p>
+	<p><a href="https://www.netflixgc.com">å¥ˆé£žå½±è§†</a></p>
+	<p><a href="https://www.meipian.cn/hot">ç¾Ž   ç¯‡</a></p>
+	<p><a href="https://bar.ssstab.com">å·¥å…·æœç´¢</a></p>
 	<p><a href="https://github.com/xx025/carrot">G P T</a></p>     
-	<p><a href="https://tuostudy.upnb.top">Í¼Å·×ÊÔ´</a></p>
-	<p><a href="http://www.world68.com">ÊÀ½çÍøÖ·</a></p>
-	<p><a href="https://map.baidu.com/">°Ù¶ÈµØÍ¼</a></p>
-	<p><a href="https://parse.bqrdh.com/smart/">ÊÓÆµ½âÎö</a></p>
+	<p><a href="https://tuostudy.upnb.top">å›¾æ¬§èµ„æº</a></p>
+	<p><a href="http://www.world68.com">ä¸–ç•Œç½‘å€</a></p>
+	<p><a href="https://map.baidu.com/">ç™¾åº¦åœ°å›¾</a></p>
+	<p><a href="https://parse.bqrdh.com/smart/">è§†é¢‘è§£æž</a></p>
 							</td>
 						</tr>
 					</tbody>
@@ -336,34 +346,34 @@
 	<p><a href="#top" target="_self"><img alt="" src="39.png" style="width: 60px; height: 78px;" /></a></p>
 	<p>&nbsp;&nbsp;</p>
 	</div>
-	<!-- °æÈ¨ÉùÃ÷ -->
+	<!-- ç‰ˆæƒå£°æ˜Ž -->
 	<div style="text-align: center; margin-top: 20px;">
-		<p style="color: #FF0000; font-weight: bold;">±¾ÍøÖ·µ¼º½Ö»ÏÞÓÚ¾°Ê¢×Ê²ú¹ÜÀíÓÐÏÞ¹«Ë¾Ê¹ÓÃ£¬Î´¾­ÊÚÈ¨Ðí¿É£¬Ë½×Ô·ÖÏí´«²¥£¬½«×·¾¿·¨ÂÉÔðÈÎ£¡</p>
+		<p style="color: #FF0000; font-weight: bold;">æœ¬ç½‘å€å¯¼èˆªåªé™äºŽæ™¯ç››èµ„äº§ç®¡ç†æœ‰é™å…¬å¸ä½¿ç”¨ï¼Œæœªç»æŽˆæƒè®¸å¯ï¼Œç§è‡ªåˆ†äº«ä¼ æ’­ï¼Œå°†è¿½ç©¶æ³•å¾‹è´£ä»»ï¼</p>
 	</div>
-	<!-- ÓÅ»¯ºóµÄÐÂÄêµ¹¼ÆÊ± -->
+	<!-- ä¼˜åŒ–åŽçš„æ–°å¹´å€’è®¡æ—¶ -->
 	<div class="gn_box">
 	    <h1>
 	        <font color=#E80017>2</font>
 	        <font color=#D1002E>0</font>
 	        <font color=#BA0045>2</font>
 	        <font color=#A3005C>7</font>
-	        <font color=#8C0073>Äê</font>
+	        <font color=#8C0073>å¹´</font>
 	        <font color=#75008A>-</font>
-	        <font color=#5E00A1>ÐÂ</font>
-	        <font color=#4700B8>Äê</font>
-	        <font color=#3000CF>µ¹</font>
-	        <font color=#1900E6>¼Æ</font>
-	        <font color=#0200FD>Ê±</font>
+	        <font color=#5E00A1>æ–°</font>
+	        <font color=#4700B8>å¹´</font>
+	        <font color=#3000CF>å€’</font>
+	        <font color=#1900E6>è®¡</font>
+	        <font color=#0200FD>æ—¶</font>
 	    </h1>
 	    <div id="CountMsg" class="HotDate">
-	        <span id="t_d">0 Ìì</span>
-	        <span id="t_h">0 Ê±</span>
-	        <span id="t_m">0 ·Ö</span>
-	        <span id="t_s">0 Ãë</span>
+	        <span id="t_d">0 å¤©</span>
+	        <span id="t_h">0 æ—¶</span>
+	        <span id="t_m">0 åˆ†</span>
+	        <span id="t_s">0 ç§’</span>
 	    </div>
 	</div>
 	<script type="text/javascript">
-	    // ÓÅ»¯µÄÐÂÄêµ¹¼ÆÊ±Âß¼­
+	    // ä¼˜åŒ–çš„æ–°å¹´å€’è®¡æ—¶é€»è¾‘
 	    class NewYearCountdown {
 	        constructor(targetDate) {
 	            this.targetDate = new Date(targetDate);
@@ -377,17 +387,17 @@
 	        }
 	        init() {
 	            this.update();
-	            // Ê¹ÓÃrequestAnimationFrameÌá¸ßÐÔÄÜ
+	            // ä½¿ç”¨requestAnimationFrameæé«˜æ€§èƒ½
 	            this.timer = setInterval(() => this.update(), 1000);
 	        }
 	        update() {
 	            const now = new Date();
 	            let difference = this.targetDate - now;
 	            
-	            // Èç¹ûµ¹¼ÆÊ±½áÊø£¬ÏÔÊ¾0
+	            // å¦‚æžœå€’è®¡æ—¶ç»“æŸï¼Œæ˜¾ç¤º0
 	            if (difference <= 0) {
 	                difference = 0;
-	                clearInterval(this.timer); // Í£Ö¹¼ÆÊ±Æ÷
+	                clearInterval(this.timer); // åœæ­¢è®¡æ—¶å™¨
 	            }
 	            
 	            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
@@ -395,12 +405,12 @@
 	            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
 	            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 	            
-	            this.elements.days.textContent = `${days} Ìì`;
-	            this.elements.hours.textContent = `${hours} Ê±`;
-	            this.elements.minutes.textContent = `${minutes} ·Ö`;
-	            this.elements.seconds.textContent = `${seconds} Ãë`;
+	            this.elements.days.textContent = `${days} å¤©`;
+	            this.elements.hours.textContent = `${hours} æ—¶`;
+	            this.elements.minutes.textContent = `${minutes} åˆ†`;
+	            this.elements.seconds.textContent = `${seconds} ç§’`;
 	            
-	            // Ìí¼ÓÂö³å¶¯»­Ð§¹û
+	            // æ·»åŠ è„‰å†²åŠ¨ç”»æ•ˆæžœ
 	            this.animateElement(this.elements.seconds);
 	        }
 	        animateElement(element) {
@@ -411,7 +421,7 @@
 	        }
 	    }
 	    
-	    // Ìí¼ÓCSS¶¯»­Àà
+	    // æ·»åŠ CSSåŠ¨ç”»ç±»
 	    const style = document.createElement('style');
 	    style.textContent = `
 	        @keyframes pulse {
@@ -423,7 +433,7 @@
 	    `;
 	    document.head.appendChild(style);
 	    
-	    // ³õÊ¼»¯µ¹¼ÆÊ±
+	    // åˆå§‹åŒ–å€’è®¡æ—¶
 	    document.addEventListener('DOMContentLoaded', () => {
 	        new NewYearCountdown('2027/1/1 00:00:00');
 	    });
