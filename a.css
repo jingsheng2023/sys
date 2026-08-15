@@ -1,0 +1,54 @@
+a:link {
+text-decoration: none;
+color:#000000;
+transition: color 0.2s ease;
+}
+a:visited {
+text-decoration: none;
+color:#000000;
+}
+a:hover {
+text-decoration: none;
+color:#EE0000;
+transform: translateY(-2px);
+display: inline-block;
+}
+p{
+text-align: center;font-size: 22px;
+margin: 5px 0;
+}
+.so{
+height: 32px;
+font-size: 15pt;
+border:1px solid #C71585;
+border-radius:1px;
+}
+/* 增强整体专业感的样式 */
+body {
+font-family: 华文中宋, STZhongsong, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* 优化表格样式 */
+table {
+border-collapse: collapse;
+}
+td {
+padding: 5px;
+}
+/* 优化底部导航 */
+#bottomnav {
+z-index: 1000;
+opacity: 0.8;
+transition: opacity 0.3s;
+}
+#bottomnav:hover {
+opacity: 1;
+}
+/* 版权声明样式优化 */
+div[style*="text-align: center; margin-top: 20px"] {
+font-size: 14px;
+padding: 10px;
+background-color: rgba(255, 0, 0, 0.1);
+border-radius: 5px;
+max-width: 800px;
+margin: 20px auto;
+}
