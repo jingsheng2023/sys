@@ -195,16 +195,12 @@
                 </td>
                 <td style="width:25%">
                     <p style="font-size: 12px;" id="ip-display">当前IP：获取中...</p>
+                    <!-- 使用 myip.ipip.net 纯文本接口获取IP -->
                     <script>
-                        fetch("https://ip-api.com/json/")
-                            .then(r => r.json())
-                            .then(d => {
-                                if (d.status === "success") {
-                                    document.getElementById("ip-display").textContent =
-                                        "当前IP：" + d.query + "（" + (d.city || d.regionName || "") + "）";
-                                } else {
-                                    document.getElementById("ip-display").textContent = "当前IP：获取失败";
-                                }
+                        fetch("https://myip.ipip.net/s")
+                            .then(r => r.text())
+                            .then(ip => {
+                                document.getElementById("ip-display").textContent = "当前IP：" + ip.trim();
                             })
                             .catch(() => {
                                 document.getElementById("ip-display").textContent = "当前IP：获取失败";
@@ -370,7 +366,7 @@
 
     <!-- 版权声明 -->
     <div style="text-align: center; margin-top: 20px;">
-        <p style="color: #FF0000; font-weight: bold;">本网址导航只限于景盛资产管理有限公司使用，未经授权许可，私自分享传播，将追究法律责任！</p>
+        <p style="color: #FF0000; font-weight: bold;">本导航只限于三一三量化使用，未经授权许可私自分享传播，将追究法律责任！</p>
     </div>
 
     <!-- 新年倒计时 -->
@@ -451,4 +447,5 @@
     </script>
 </body>
 </html>
+
 
